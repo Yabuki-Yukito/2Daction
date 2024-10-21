@@ -1,0 +1,32 @@
+﻿  backgraund.cpp
+  Block.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  fade.cpp
+  game.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(58,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(58,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(59,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(59,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(60,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(60,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(61,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(61,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Input.cpp
+  main.cpp
+  Particle.cpp
+  pause.cpp
+  player.cpp
+  rank.cpp
+  ranking.cpp
+  result.cpp
+  score.cpp
+  sound.cpp
+  title.cpp
+  wave.cpp
+  コード生成しています。
+  Previous IPDB not found, fall back to full compilation.
+  All 77 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  2D ActionGame.vcxproj -> C:\Users\student\Desktop\2Daction\2Daction\Release\2D ActionGame.exe

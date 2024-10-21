@@ -32,6 +32,8 @@ typedef enum
 typedef struct
 {
 	D3DXVECTOR3 pos;					//位置
+	D3DXVECTOR3 move;					//移動量
+	D3DXVECTOR3 posOld;					//前回の位置
 	ENEMYSTATE state;					//状態
 	int nCounterState;					//状態管理カウンター
 	int nType;							//種類

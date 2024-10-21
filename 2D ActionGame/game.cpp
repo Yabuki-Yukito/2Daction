@@ -79,7 +79,7 @@ void InitGame(void)
 
 	g_gameState = GAMESTATE_NORMAL;									//通常状態
 	g_nCounterGameState;
-	//g_bPause = false;													//ポーズ解除
+	//g_bPause = false;												//ポーズ解除
 
 	////読込処理
 	//LoadWave();
@@ -147,7 +147,7 @@ void UpdateGame(void)
 	//UpdateExplosion();
 
 	Player* pPlayer = GetPlayer();										//プレイヤー情報へのポインタ
-	Enemy* pEnemy = GetEnemy();										//敵情報へのポインタ
+	Enemy* pEnemy = GetEnemy();											//敵情報へのポインタ
 
 	//敵数の取得
 	int NumEnemy = GetEnemyNum();

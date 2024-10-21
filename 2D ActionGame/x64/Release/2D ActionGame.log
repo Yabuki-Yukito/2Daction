@@ -1,0 +1,37 @@
+﻿  backgraund.cpp
+  Block.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  fade.cpp
+  game.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(58,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(58,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(59,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(59,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(60,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(60,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(61,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(61,46): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Input.cpp
+  main.cpp
+  Particle.cpp
+  pause.cpp
+  player.cpp
+  rank.cpp
+  ranking.cpp
+  result.cpp
+  score.cpp
+  sound.cpp
+  title.cpp
+  wave.cpp
+Block.obj : error LNK2001: 外部シンボル D3DXCreateTextureFromFileA は未解決です
+Input.obj : error LNK2001: 外部シンボル c_dfDIKeyboard は未解決です
+Input.obj : error LNK2001: 外部シンボル XInputGetState は未解決です
+Input.obj : error LNK2001: 外部シンボル GUID_SysKeyboard は未解決です
+Input.obj : error LNK2001: 外部シンボル XInputEnable は未解決です
+Input.obj : error LNK2001: 外部シンボル IID_IDirectInput8A は未解決です
+Input.obj : error LNK2001: 外部シンボル DirectInput8Create は未解決です
+main.obj : error LNK2001: 外部シンボル Direct3DCreate9 は未解決です
+main.obj : error LNK2001: 外部シンボル D3DXCreateFontA は未解決です
+C:\Users\student\Desktop\2Daction\2Daction\x64\Release\2D ActionGame.exe : fatal error LNK1120: 9 件の未解決の外部参照

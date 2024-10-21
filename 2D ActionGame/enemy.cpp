@@ -28,7 +28,9 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 LPDIRECT3DTEXTURE9 g_apTextureEnemy[NUM_ENEMY] = {};
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffEnemy;
-Enemy g_aEnemy[MAX_ENEMY];										//敵の情報
+D3DXVECTOR3 g_moveEnemy;										//敵の移動量
+Enemy g_aEnemy[MAX_ENEMY];										//敵の情報(最大数)
+Enemy g_Enemy;													//敵の情報
 int g_nNumEnemy = 0;											//敵の総数
 
 //=========================================================================================================
@@ -51,7 +53,11 @@ void InitEnemy()
 
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
+		g_moveEnemy = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		g_Enemy.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		g_Enemy.posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].nType = 0;
 		g_aEnemy[nCntEnemy].nLife = 0;
 		g_aEnemy[nCntEnemy].BulletCounter = 0;
@@ -223,8 +229,18 @@ void SetEnemy(D3DXVECTOR3 pos, int nType, int nLife)
 
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
+		//前回の位置を保存
+		g_Enemy.posOld = g_Enemy.pos;
+
+		//位置を更新
+		g_Enemy.pos.x += g_moveEnemy.x;
+
+		//移動量を更新(減衰)
+		g_moveEnemy.x += (0.0f - g_moveEnemy.x) * 0.08f;
+
 		if (g_aEnemy[nCntEnemy].bUse == false)
-		{//敵が使用されてない
+		{
+			//敵が使用されてない
 			g_aEnemy[nCntEnemy].pos = pos;
 			g_aEnemy[nCntEnemy].nType = nType;
 			g_aEnemy[nCntEnemy].nLife = nLife;

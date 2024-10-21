@@ -51,7 +51,7 @@ void InitResult(void)
 		&g_pVtxBuffResult,
 		NULL);
 
-	g_Result = RESULT_LOSE;//リザルトの初期化
+	g_Result = RESULT_LOSE;								//リザルトの初期化
 
 	VERTEX_2D* pVtx;									//頂点情報へのポインタ
 
