@@ -55,10 +55,10 @@ void InitGame(void)
 	InitEnemy();
 
 	//X座標,Y座標,Z座標
-	SetEnemy(D3DXVECTOR3(750.0f, 200.0f, 0.0f), 0.0f, 10.0f);					//敵の座標(上)
-	SetEnemy(D3DXVECTOR3(300.0f, 420.0f, 0.0f), 0.0f, 10.0f);					//敵の座標(左)
-	SetEnemy(D3DXVECTOR3(1000.0f, 420.0f, 0.0f), 0.0f, 10.0f);					//敵の座標(右)
-	SetEnemy(D3DXVECTOR3(660.0f, 640.0f, 0.0f), 0.0f, 10.0f);					//敵の座標(下)
+	SetEnemy(D3DXVECTOR3(750.0f, 200.0f, 0.0f), 0, 10.0f);					//敵の座標(上)
+	SetEnemy(D3DXVECTOR3(300.0f, 420.0f, 0.0f), 1, 10.0f);					//敵の座標(左)
+	SetEnemy(D3DXVECTOR3(1000.0f, 420.0f, 0.0f), 2, 10.0f);					//敵の座標(右)
+	SetEnemy(D3DXVECTOR3(660.0f, 640.0f, 0.0f), 3, 10.0f);					//敵の座標(下)
 
 
 	////ウェーブの初期化処理

@@ -18,7 +18,7 @@
 //マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #define MAX_ENEMY (128)											//敵の最大数
-#define NUM_ENEMY (3)											//敵の種類
+#define NUM_ENEMY (4)											//敵の種類
 #define SIZE (40)												//敵の大きさ
 #define TIME (5)												//時間
 #define SECONDS (30)											//秒数
@@ -46,16 +46,32 @@ void InitEnemy()
 
 	VERTEX_2D* pVtx;
 
-	//テクスチャ(?枚分)の読み込み
+	//敵のテクスチャの読み込み
 	D3DXCreateTextureFromFile(pDevice,
-		"data\\texture\\20211009-5.png",
+		"data\\texture\\Enemy.png",
 		&g_apTextureEnemy[0]);
+
+	//2体目
+	D3DXCreateTextureFromFile(pDevice,
+		"data\\texture\\Enemy1.png",
+		&g_apTextureEnemy[1]);
+
+	//3体目
+	D3DXCreateTextureFromFile(pDevice,
+		"data\\texture\\Enemy2.png",
+		&g_apTextureEnemy[2]);
+
+	//4体目
+	D3DXCreateTextureFromFile(pDevice,
+		"data\\texture\\Enemy3.png",
+		& g_apTextureEnemy[3]);
+
 
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
-		g_moveEnemy = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		g_Enemy.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		g_Enemy.posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		//g_moveEnemy = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		//g_Enemy.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		//g_Enemy.posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].nType = 0;
@@ -229,15 +245,6 @@ void SetEnemy(D3DXVECTOR3 pos, int nType, int nLife)
 
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
-		//前回の位置を保存
-		g_Enemy.posOld = g_Enemy.pos;
-
-		//位置を更新
-		g_Enemy.pos.x += g_moveEnemy.x;
-
-		//移動量を更新(減衰)
-		g_moveEnemy.x += (0.0f - g_moveEnemy.x) * 0.08f;
-
 		if (g_aEnemy[nCntEnemy].bUse == false)
 		{
 			//敵が使用されてない
@@ -245,13 +252,23 @@ void SetEnemy(D3DXVECTOR3 pos, int nType, int nLife)
 			g_aEnemy[nCntEnemy].nType = nType;
 			g_aEnemy[nCntEnemy].nLife = nLife;
 
-			//頂点座標の設定
+			//頂点座標の設定(敵)
 			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
 			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
 			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
 			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
 
-			//rhw tex等...
+			//rhwの設定
+			pVtx[0].rhw = 1.0f;
+			pVtx[1].rhw = 1.0f;
+			pVtx[2].rhw = 1.0f;
+			pVtx[3].rhw = 1.0f;
+
+			//テクスチャ座標の設定
+			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+			pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
 
 			g_aEnemy[nCntEnemy].bUse = true;
 

@@ -33,7 +33,7 @@ void InitResult(void)
 	if (g_Result == RESULT_WIN)
 	{
 		D3DXCreateTextureFromFile(pDevice,
-			"data\\texture\\result.png",
+			"data\\texture\\GameClear.png",
 			&g_pTextureResult);
 	}
 	else if (g_Result == RESULT_LOSE)
