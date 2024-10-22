@@ -13,6 +13,8 @@
 #include "game.h"
 #include "result.h"
 #include "fade.h"
+#include <stdlib.h>
+#include <crtdbg.h>
 //#include "backgraund.h"
 //#include "bullet.h"
 //#include "explosion.h"
@@ -38,6 +40,9 @@ LPDIRECT3DDEVICE9 g_pD3DDevice = NULL;
 //=========================================================================================================
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hInstancePrev, _In_ LPSTR lpCmdLine, _In_ int nCmdshow)
 {
+	//メモリリーク検知用のフラグ
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF); 
+
 	WNDCLASSEX wcex =
 	{
 		sizeof(WNDCLASSEX),
@@ -143,6 +148,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hInstancePrev, _
 			}
 		}
 	}
+
 
 	//分解能を戻す
 	timeEndPeriod(1);
@@ -435,6 +441,8 @@ void Draw(void)
 //=========================================================================================================
 void DrawFPS(void)
 {
+#ifdef _DEBUG
+
 	RECT rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	char aStr[256];
 
@@ -443,6 +451,9 @@ void DrawFPS(void)
 
 	//テキストの描画
 	g_pFont->DrawText(NULL, &aStr[0], -1, &rect, DT_LEFT, D3DCOLOR_RGBA(255, 255, 255, 255));
+
+#endif // _DEBUG
+
 }
 
 //=========================================================================================================

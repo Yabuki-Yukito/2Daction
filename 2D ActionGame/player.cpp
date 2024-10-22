@@ -1,3 +1,4 @@
+
 //=========================================================================================================
 //
 // プレイヤーの処理 [player.cpp]
@@ -191,6 +192,7 @@ void UpdatePlayer(void)
 				g_player.bJump = true;
 			}
 		}
+
 		g_movePlayer.y += GB;									//重力加算
 
 		//前回の位置を保存
@@ -217,6 +219,7 @@ void UpdatePlayer(void)
 			&g_movePlayer) == true)
 		{
 			g_player.bStepOn = false;
+			g_player.pos.y += -100.0f;
 			g_player.bJump = false;
 		}
 

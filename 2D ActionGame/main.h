@@ -29,16 +29,16 @@
 //マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #define CLASS_NAME "windowClass"								//ウィンドウクラスの名前
-#define WINDOW_NAME "Score Run"							//ウィンドウの名前(キャプションに表示)
+#define WINDOW_NAME "2D action"									//ウィンドウの名前(キャプションに表示)
 #define SCREEN_WIDTH (1280)										//ウィンドウの幅
 #define SCREEN_HEIGHT (720)										//ウィンドウの高さ
 #define FVF_VERTEX_2D (D3DFVF_XYZRHW|D3DFVF_DIFFUSE|D3DFVF_TEX1)
-#define ID_BUTTON_FINISH (101)								//終了ボタンのID
+#define ID_BUTTON_FINISH (101)									//終了ボタンのID
 #define ID_BUTTON_COPY (102)									//コピーボタンのID
-#define ID_EDIT_INPUT (111)									//入力ウィンドウのID
+#define ID_EDIT_INPUT (111)										//入力ウィンドウのID
 #define ID_EDIT_OUTPUT (121)									//出力ボタンのID
-#define ID_TIMER (122)										//タイマーのID
-#define ID_TIMER_INTERVAL (1000/60)							//タイマーの発生時間間隔(ミリ秒)
+#define ID_TIMER (122)											//タイマーのID
+#define ID_TIMER_INTERVAL (1000/60)								//タイマーの発生時間間隔(ミリ秒)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //頂点情報{2D}の構造体の定義
