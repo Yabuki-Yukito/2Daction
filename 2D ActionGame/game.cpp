@@ -13,8 +13,8 @@
 #include "enemy.h"
 #include "result.h"
 #include "backgraund.h"
+#include "score.h"
 //#include "bullet.h"
-//#include "score.h"
 //#include "pause.h"
 //#include "ranking.h"
 //#include "effect.h
@@ -60,7 +60,6 @@ void InitGame(void)
 	SetEnemy(D3DXVECTOR3(1000.0f, 420.0f, 0.0f), 2, 20.0f);					//敵の座標(右)
 	SetEnemy(D3DXVECTOR3(660.0f, 640.0f, 0.0f), 3, 5.0f);					//敵の座標(下)
 
-
 	////ウェーブの初期化処理
 	//InitWave();
 
@@ -68,8 +67,8 @@ void InitGame(void)
 	//InitEffect();
 
 	//スコアの初期化処理
-	//InitScore();
-	//SetScore(0);
+	InitScore();
+	SetScore(0);
 
 	//背景の初期化処理
 	Initbackgraund();
@@ -107,7 +106,7 @@ void UninitGame(void)
 	//UninitEffect();
 
 	//スコアの終了処理
-	//UninitScore();
+	UninitScore();
 
 	//背景の終了処理
 	Uninitbackgraund();
@@ -138,7 +137,7 @@ void UpdateGame(void)
 	//UpdateEffect();
 
 	//スコアの更新処理
-	//UpdateScore();
+	UpdateScore();
 
 	//背景の更新処理
 	Updatebackgraund();
@@ -217,7 +216,7 @@ void DrawGame(void)
 	//DrawEffect();
 
 	//スコアの描画処理
-	//DrawScore();
+	DrawScore();
 
 	//爆発の描画処理
 	//DrawExplosion();

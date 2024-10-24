@@ -7,8 +7,8 @@
 
 #include "enemy.h"
 #include "player.h"
+#include "score.h"
 //#include "bullet.h"
-//#include "score.h"
 
 //=========================================================================================================
 //メイン関数
@@ -83,9 +83,11 @@ void InitEnemy()
 
 	g_nNumEnemy = 0;											//敵(複数)の初期化
 
-	//g_aEnemy[0].nScore = 500;
-	//g_aEnemy[1].nScore = 1500;
-	//g_aEnemy[2].nScore = 1000;
+	//敵を倒した時のスコア
+	g_aEnemy[0].nScore = 500;
+	g_aEnemy[1].nScore = 800;
+	g_aEnemy[2].nScore = 1200;
+	g_aEnemy[3].nScore = 200;
 
 	//頂点バッファの生成・頂点情報の設定
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_2D) * 4 * MAX_ENEMY,
@@ -199,6 +201,7 @@ void UpdateEnemy(void)
 				}
 				break;
 			}
+
 		}
 	}
 }
@@ -305,7 +308,7 @@ void HitEnemy(int nCntEnemy, int nDamage)
 		g_aEnemy[nCntEnemy].bUse = false;
 
 		g_nNumEnemy--;
-		//AddScore(g_aEnemy[nCntEnemy].nScore);
+		AddScore(g_aEnemy[nCntEnemy].nScore);
 	}
 	else
 	{

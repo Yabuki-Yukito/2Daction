@@ -20,7 +20,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define JP (-40)	//ジャンプ力
+#define JP (-40)		//ジャンプ力
 #define GB (+2.5)		//重力
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -175,24 +175,24 @@ void UpdatePlayer(void)
 	{
 		if (KeyboardRepeat(DIK_A) == true || JoypadPress(JOYKEY_PADLEFT) == true)
 		{//Aキーが押された
-			g_movePlayer.x -= 1.0f;								//プレイヤーの移動速度
-			g_player.bRightMove = false;						//左を向いていたら
+			g_movePlayer.x -= 1.0f;						//プレイヤーの移動速度
+			g_player.bRightMove = false;				//左を向いていたら
 		}
 		if (KeyboardRepeat(DIK_D) == true || JoypadPress(JOYKEY_PADRIGHT) == true)
 		{//Dキーが押された
-			g_movePlayer.x += 1.0f;								//プレイヤーの移動速度
-			g_player.bRightMove = true;							//右を向いていたら
+			g_movePlayer.x += 1.0f;						//プレイヤーの移動速度
+			g_player.bRightMove = true;					//右を向いていたら
 		}
 		if (KeyboardTrigger(DIK_SPACE) == true || JoypadPress(JOYKEY_L3) == true || JoypadPress(JOYKEY_START) == true)
 		{//SPACEキー
 			if (g_player.bJump == false)
 			{
-				g_movePlayer.y = JP;							//プレイヤーのジャンプ力
-				g_player.bJump = true;							//ジャンプしている時
+				g_movePlayer.y = JP;					//プレイヤーのジャンプ力
+				g_player.bJump = true;					//ジャンプしている時
 			}
 		}
 
-		g_movePlayer.y += GB;									//重力加算
+		g_movePlayer.y += GB;							//重力加算
 
 		//前回の位置を保存
 		g_player.posOld = g_player.pos;
@@ -203,9 +203,9 @@ void UpdatePlayer(void)
 
 		//ブロックの当たり判定
 		if (CollisionBlock(
-			&g_player.pos,		//現在の位置
-			&g_player.posOld,	//前回の位置
-			&g_movePlayer,		//プレイヤーの移動量
+			&g_player.pos,								//現在の位置
+			&g_player.posOld,							//前回の位置
+			&g_movePlayer,								//プレイヤーの移動量
 			PLAYER_WIDTH, PLAYER_HEIGHT) == true)
 		{
 			g_player.bJump = false;
@@ -227,21 +227,21 @@ void UpdatePlayer(void)
 		//g_movePlayer.y += (0.0f - g_movePlayer.y) * 0.09f;
 
 		//画面外の処理
-		if (g_player.pos.x >= SCREEN_WIDTH)						//横(右)
+		if (g_player.pos.x >= SCREEN_WIDTH)				//横(右)
 		{
 			g_player.pos.x = 0;
 		}
-		else if (g_player.pos.x <= 0)							//横(左)
+		else if (g_player.pos.x <= 0)					//横(左)
 		{
 			g_player.pos.x = SCREEN_WIDTH;
 		}
-		if (g_player.pos.y >= SCREEN_HEIGHT)					//地面
+		if (g_player.pos.y >= SCREEN_HEIGHT)			//地面
 		{
 			g_player.pos.y = SCREEN_HEIGHT;
 			g_movePlayer.y = 0.0f;
 			g_player.bJump = false;
 		}
-		else if (g_player.pos.y <= 0 + PLAYER_HEIGHT)			//上
+		else if (g_player.pos.y <= 0 + PLAYER_HEIGHT)	//上
 		{
 			g_player.pos.y = 0 + PLAYER_HEIGHT;
 			g_movePlayer.y = 0;
@@ -306,7 +306,7 @@ void UpdatePlayer(void)
 //=========================================================================================================
 void DrawPlayer(void)
 {
-	LPDIRECT3DDEVICE9 pDevice;									//デバイスへのポインタ
+	LPDIRECT3DDEVICE9 pDevice;						//デバイスへのポインタ
 
 	//デバイスの取得
 	pDevice = GetDevice();
@@ -333,7 +333,7 @@ void DrawPlayer(void)
 //=========================================================================================================
 Player* GetPlayer(void)
 {
-	return &g_player;											//プレイヤーの情報を返す
+	return &g_player;								//プレイヤーの情報を返す
 }
 
 //=========================================================================================================
@@ -345,21 +345,21 @@ void HitPlayer(int nDamage)
 
 	VERTEX_2D* pVtx{};
 
-	if (g_player.nLife <= 0)									//プレイヤーの体力が0になった時
+	if (g_player.nLife <= 0)						//プレイヤーの体力が0になった時
 	{
 		//g_nNumEnemy--;
 
-		g_player.bDisp = false;									//プレイヤーが表示されてない時
-		g_player.bUse = false;									//プレイヤーが使用されていない時
-		g_player.state = PLAYERSTATE_DEATH;						//死亡状態
-		g_player.nCounterState = 60;							//状態管理
+		g_player.bDisp = false;						//プレイヤーが表示されてない時
+		g_player.bUse = false;						//プレイヤーが使用されていない時
+		g_player.state = PLAYERSTATE_DEATH;			//死亡状態
+		g_player.nCounterState = 60;				//状態管理
 	}
 	else
 	{
-		g_player.state = PLAYERSTATE_DAMAGE;					//ダメージ状態
-		g_player.nCounterState = 5;								//ダメージ状態を保つ時間を設定
+		g_player.state = PLAYERSTATE_DAMAGE;		//ダメージ状態
+		g_player.nCounterState = 5;					//ダメージ状態を保つ時間を設定
 
-		pVtx += 4 * nDamage;									//プレイヤーのヒット処理(4つ分)
+		pVtx += 4 * nDamage;						//プレイヤーのヒット処理(4つ分)
 
 		//頂点バッファをロック
 		g_pVtxBuffplayer->Lock(0, 0, (void**)&pVtx, 0);

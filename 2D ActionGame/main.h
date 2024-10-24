@@ -19,9 +19,9 @@
 //ライブラリのリンク
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma comment(lib,"d3d9.lib")									//描画処理に必要
-#pragma comment(lib,"d3dx9.lib")
-#pragma comment(lib,"dxguid.lib")
-#pragma comment(lib,"winmm.lib")
+#pragma comment(lib,"d3dx9.lib")								//<d3dx9.lib>の拡張ライブラリ
+#pragma comment(lib,"dxguid.lib")								//DirectXコンポーネント(部品)の使用に必要
+#pragma comment(lib,"winmm.lib")								//システム時刻取得に必要
 #pragma comment(lib,"dinput8.lib")								//入力処理に必要
 #pragma comment(lib,"xinput.lib")								//ジョイパッド処理に必要
 
@@ -32,13 +32,13 @@
 #define WINDOW_NAME "2D action"									//ウィンドウの名前(キャプションに表示)
 #define SCREEN_WIDTH (1280)										//ウィンドウの幅
 #define SCREEN_HEIGHT (720)										//ウィンドウの高さ
-#define FVF_VERTEX_2D (D3DFVF_XYZRHW|D3DFVF_DIFFUSE|D3DFVF_TEX1)
 #define ID_BUTTON_FINISH (101)									//終了ボタンのID
 #define ID_BUTTON_COPY (102)									//コピーボタンのID
 #define ID_EDIT_INPUT (111)										//入力ウィンドウのID
 #define ID_EDIT_OUTPUT (121)									//出力ボタンのID
 #define ID_TIMER (122)											//タイマーのID
 #define ID_TIMER_INTERVAL (1000/60)								//タイマーの発生時間間隔(ミリ秒)
+#define FVF_VERTEX_2D (D3DFVF_XYZRHW|D3DFVF_DIFFUSE|D3DFVF_TEX1)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //頂点情報{2D}の構造体の定義
