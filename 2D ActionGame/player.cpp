@@ -11,8 +11,7 @@
 #include "Block.h"
 #include "game.h"
 #include "enemy.h"
-//#include "Block.h"
-//#include "result.h"
+#include "result.h"
 
 //=========================================================================================================
 //メイン関数
@@ -21,8 +20,8 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define JP (-45)	//ジャンプ力
-#define GB (+3)		//重力
+#define JP (-40)	//ジャンプ力
+#define GB (+2.5)		//重力
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //グローバル変数
@@ -85,7 +84,7 @@ void InitPlayer(void)
 	//頂点バッファをロックし、頂点情報へのポインタを取得
 	g_pVtxBuffplayer->Lock(0, 0, (void**)&pVtx, 0);
 
-	//頂点座標の設定
+	//頂点座標の設定(プレイヤー)
 	pVtx[0].pos.x = g_player.pos.x - PLAYER_WIDTH;
 	pVtx[0].pos.y = g_player.pos.y - PLAYER_HEIGHT;
 	pVtx[0].pos.z = 0.0f;
@@ -114,7 +113,7 @@ void InitPlayer(void)
 	pVtx[2].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 	pVtx[3].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 
-	//テクスチャ座標の設定
+	//テクスチャ座標の設定(プレイヤー)
 	pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
 	pVtx[1].tex = D3DXVECTOR2(0.25f, 0.0f);
 	pVtx[2].tex = D3DXVECTOR2(0.0f, 0.5f);
@@ -163,7 +162,7 @@ void UpdatePlayer(void)
 	//	break;
 
 	//case PLAYERSTATE_DEATH:
-
+	//	
 	//	break;
 
 	//default:
@@ -176,20 +175,20 @@ void UpdatePlayer(void)
 	{
 		if (KeyboardRepeat(DIK_A) == true || JoypadPress(JOYKEY_PADLEFT) == true)
 		{//Aキーが押された
-			g_movePlayer.x -= 1.0f;
+			g_movePlayer.x -= 1.0f;								//プレイヤーの移動速度
 			g_player.bRightMove = false;						//左を向いていたら
 		}
 		if (KeyboardRepeat(DIK_D) == true || JoypadPress(JOYKEY_PADRIGHT) == true)
 		{//Dキーが押された
-			g_movePlayer.x += 1.0f;
+			g_movePlayer.x += 1.0f;								//プレイヤーの移動速度
 			g_player.bRightMove = true;							//右を向いていたら
 		}
 		if (KeyboardTrigger(DIK_SPACE) == true || JoypadPress(JOYKEY_L3) == true || JoypadPress(JOYKEY_START) == true)
 		{//SPACEキー
 			if (g_player.bJump == false)
 			{
-				g_movePlayer.y = JP;
-				g_player.bJump = true;
+				g_movePlayer.y = JP;							//プレイヤーのジャンプ力
+				g_player.bJump = true;							//ジャンプしている時
 			}
 		}
 
@@ -315,7 +314,7 @@ void DrawPlayer(void)
 	//プレイヤーが表示されるとき
 	//if (g_player.bDisp == true)
 	//{
-		//頂点バッファをデータストリームに設定
+	//頂点バッファをデータストリームに設定
 	pDevice->SetStreamSource(0, g_pVtxBuffplayer, 0, sizeof(VERTEX_2D));
 
 	//頂点フォーマットの設定
@@ -346,7 +345,7 @@ void HitPlayer(int nDamage)
 
 	VERTEX_2D* pVtx{};
 
-	if (g_player.nLife <= 0)
+	if (g_player.nLife <= 0)									//プレイヤーの体力が0になった時
 	{
 		//g_nNumEnemy--;
 

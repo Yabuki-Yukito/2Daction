@@ -39,7 +39,7 @@ typedef struct
 	int nCounterState;					//状態管理カウンター
 	int nType;							//種類
 	int nLife;							//体力
-	int BulletCounter;					//弾へのカウンター
+	int Counter;						//カウンター
 	int nScore;							//スコア
 	bool bUse;							//使用しているかどうか
 }Enemy;

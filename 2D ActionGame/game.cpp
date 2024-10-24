@@ -12,7 +12,7 @@
 #include "fade.h"
 #include "enemy.h"
 #include "result.h"
-//#include "backgraund.h"
+#include "backgraund.h"
 //#include "bullet.h"
 //#include "score.h"
 //#include "pause.h"
@@ -54,7 +54,7 @@ void InitGame(void)
 	//敵の初期化処理
 	InitEnemy();
 
-	//X座標,Y座標,Z座標
+					//敵のX座標,Y座標,Z座標,タイプ,体力
 	SetEnemy(D3DXVECTOR3(750.0f, 200.0f, 0.0f), 0, 10.0f);					//敵の座標(上)
 	SetEnemy(D3DXVECTOR3(300.0f, 420.0f, 0.0f), 1, 15.0f);					//敵の座標(左)
 	SetEnemy(D3DXVECTOR3(1000.0f, 420.0f, 0.0f), 2, 20.0f);					//敵の座標(右)
@@ -72,7 +72,7 @@ void InitGame(void)
 	//SetScore(0);
 
 	//背景の初期化処理
-	//Initbackgraund();
+	Initbackgraund();
 
 	//爆発の初期化処理
 	//InitExplosion();
@@ -110,7 +110,7 @@ void UninitGame(void)
 	//UninitScore();
 
 	//背景の終了処理
-	//Uninitbackgraund();
+	Uninitbackgraund();
 
 	//爆発の終了処理
 	//UninitExplosion();
@@ -141,7 +141,7 @@ void UpdateGame(void)
 	//UpdateScore();
 
 	//背景の更新処理
-	//Updatebackgraund();
+	Updatebackgraund();
 
 	//爆発の更新処理
 	//UpdateExplosion();
@@ -198,7 +198,7 @@ void UpdateGame(void)
 void DrawGame(void)
 {
 	//背景の描画処理
-	//Drawbackgraund();
+	Drawbackgraund();
 
 	//ブロックの描画処理
 	DrawBlock();

@@ -15,7 +15,7 @@
 #include "fade.h"
 #include <stdlib.h>
 #include <crtdbg.h>
-//#include "backgraund.h"
+#include "backgraund.h"
 //#include "bullet.h"
 //#include "explosion.h"
 //#include "sound.h"

@@ -30,7 +30,7 @@ LPDIRECT3DTEXTURE9 g_apTextureEnemy[NUM_ENEMY] = {};
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffEnemy;
 D3DXVECTOR3 g_moveEnemy;										//“G‚ÌˆÚ“®—Ê
 Enemy g_aEnemy[MAX_ENEMY];										//“G‚Ìî•ñ(Å‘å”)
-Enemy g_Enemy;													//“G‚Ìî•ñ
+//Enemy g_Enemy;													//“G‚Ìî•ñ
 int g_nNumEnemy = 0;											//“G‚Ì‘”
 
 //=========================================================================================================
@@ -76,7 +76,7 @@ void InitEnemy()
 		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].nType = 0;
 		g_aEnemy[nCntEnemy].nLife = 0;
-		g_aEnemy[nCntEnemy].BulletCounter = 0;
+		g_aEnemy[nCntEnemy].Counter = 0;
 		g_aEnemy[nCntEnemy].state = ENEMYSTATE_NORMAL;
 		g_aEnemy[nCntEnemy].bUse = false;
 	}
@@ -171,11 +171,11 @@ void UpdateEnemy(void)
 			switch (g_aEnemy[nCntEnemy].state)
 			{
 			case ENEMYSTATE_NORMAL:
-				g_aEnemy[nCntEnemy].BulletCounter++;
-				if (g_aEnemy[nCntEnemy].BulletCounter >= SECONDS)	//ˆê’èŽžŠÔ‚ÌŒo‰ß
+				g_aEnemy[nCntEnemy].Counter++;
+				if (g_aEnemy[nCntEnemy].Counter >= SECONDS)	//ˆê’èŽžŠÔ‚ÌŒo‰ß
 				{
 					//SetBullet(g_aEnemy[nCntEnemy].pos, D3DXVECTOR3(-7.0f, 0.0f, 0.0f),100, ENEMY_STATE_ENEMY);
-					g_aEnemy[nCntEnemy].BulletCounter = 0;
+					g_aEnemy[nCntEnemy].Counter = 0;
 				}
 				break;
 

@@ -225,11 +225,11 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 	{
 		if (g_aBlock[nCntBlock].bUse == true)
 		{
-			//左右の当たり判定
+			//ブロック左右の当たり判定
 			if (pPos->x + fWidth / 2 > g_aBlock[nCntBlock].pos.x - g_aBlock[nCntBlock].fWidth
 				&& pPos->x - fWidth / 2 < g_aBlock[nCntBlock].pos.x + g_aBlock[nCntBlock].fWidth)
 			{
-				//上の当たり判定
+				//ブロック上の当たり判定
 				if (pPosOld->y <= g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight
 					&& pPos->y > g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight)
 				{
@@ -237,7 +237,7 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 					pPos->y = g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight;
 					pMove->y = 0.0f;
 				}
-				//下の当たり判定
+				//ブロック下の当たり判定
 				else if (pPosOld->y - fHeight >= g_aBlock[nCntBlock].pos.y + g_aBlock[nCntBlock].fHeight
 					&& pPos->y - fHeight < g_aBlock[nCntBlock].pos.y + g_aBlock[nCntBlock].fHeight)
 				{
@@ -251,14 +251,14 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 			if (pPosOld->y > g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight
 				&& pPosOld->y - fHeight < g_aBlock[nCntBlock].pos.y + g_aBlock[nCntBlock].fHeight)
 			{
-				//Xが左から右のブロックにめり込んだ
+				//プレイヤーが左から右のブロックにめり込んだ
 				if (pPosOld->x + fWidth / 2 <= g_aBlock[nCntBlock].pos.x - g_aBlock[nCntBlock].fWidth
 					&& pPos->x + fWidth / 2 > g_aBlock[nCntBlock].pos.x - g_aBlock[nCntBlock].fWidth)
 				{
 					pPos->x = g_aBlock[nCntBlock].pos.x - g_aBlock[nCntBlock].fWidth - fWidth / 2;
 					pMove->x = 0.0f;
 				}
-				//Xが右から左のブロックにめり込んだ
+				//プレイヤーが右から左のブロックにめり込んだ
 				if (pPosOld->x - fWidth / 2 >= g_aBlock[nCntBlock].pos.x + g_aBlock[nCntBlock].fWidth
 					&& pPos->x - fWidth / 2 < g_aBlock[nCntBlock].pos.x + g_aBlock[nCntBlock].fWidth)
 				{
