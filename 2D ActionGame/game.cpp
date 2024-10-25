@@ -39,7 +39,7 @@ void InitGame(void)
 	//ブロックの初期化処理
 	InitBlock();
 
-	//X座標,Y座標,Z座標,高さの座標,幅の座標
+						//X座標,Y座標,Z座標,高さの座標,幅の座標
 	SetBlock(D3DXVECTOR3(640.0f, 695.0f, 0.0f), 20.0f, 700.0f);			//ブロック1個目(地面)の座標
 	SetBlock(D3DXVECTOR3(300.0f, 490.0f, 0.0f), 30.0f, 180.0f);			//ブロック2個目(左側)の座標
 	SetBlock(D3DXVECTOR3(1000.0f, 490.0f, 0.0f), 30.0f, 180.0f);		//ブロック3個目(右側)の座標

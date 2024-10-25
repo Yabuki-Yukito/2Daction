@@ -120,10 +120,10 @@ void UpdateFade(void)
 		g_pVtxBuffFade->Lock(0, 0, (void**)&pVtx, 0);
 
 		//頂点カラーの設定
+		pVtx[0].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
+		pVtx[1].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
 		pVtx[2].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
 		pVtx[3].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
-		pVtx[1].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
-		pVtx[0].col = D3DXCOLOR(0.0f, 0.0f, 0.0f, g_colorFade.a);
 
 		//頂点情報をアンロック
 		g_pVtxBuffFade->Unlock();

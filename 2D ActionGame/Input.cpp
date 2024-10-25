@@ -77,7 +77,9 @@ void UninitKeyboard(void)
 void UpdateKeyboard(void)
 {
 	BYTE aKeyState[NUM_KEY_MAX];							//キーボードの入力情報
+
 	int nCntKey;
+
 	for (nCntKey = 0; nCntKey < NUM_KEY_MAX; nCntKey++)
 	{
 		g_aOldState[nCntKey] = g_aKeyState[nCntKey];		//1つ前のキーボードのプレス情報を保存

@@ -1,6 +1,4 @@
-﻿  game.cpp
-C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(58,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(59,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(60,50): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp(61,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  Input.cpp
+  fade.cpp
+  コードを生成中...
   2D ActionGame.vcxproj -> C:\Users\student\Desktop\2Daction\2Daction\Debug\2D ActionGame.exe
