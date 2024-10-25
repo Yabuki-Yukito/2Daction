@@ -165,6 +165,10 @@ void UpdateEnemy(void)
 {
 	VERTEX_2D* pVtx;
 	int nCntEnemy;
+
+	//頂点バッファをロックし、頂点情報へのポインタを取得
+	g_pVtxBuffEnemy->Lock(0, 0, (void**)&pVtx, 0);
+
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
 		if (g_aEnemy[nCntEnemy].bUse == true)
@@ -186,23 +190,14 @@ void UpdateEnemy(void)
 				{
 					g_aEnemy[nCntEnemy].state = ENEMYSTATE_NORMAL;
 
-					//頂点バッファをロックし、頂点情報へのポインタを取得
-					g_pVtxBuffEnemy->Lock(0, 0, (void**)&pVtx, 0);
-
 					//頂点カラーの設定
 					pVtx[0].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 					pVtx[1].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 					pVtx[2].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 					pVtx[3].col = D3DCOLOR_RGBA(255, 255, 255, 255);
-
-					//頂点情報をアンロック
-					g_pVtxBuffEnemy->Unlock();
 				}
 				break;
 			}
-
-			//頂点バッファをロックし、頂点情報へのポインタを取得
-			g_pVtxBuffEnemy->Lock(0, 0, (void**)&pVtx, 0);
 
 			//前回の位置を保存
 			g_aEnemy[nCntEnemy].posOld = g_aEnemy[nCntEnemy].pos;
@@ -219,22 +214,11 @@ void UpdateEnemy(void)
 			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
 			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
 
-			//rhwの設定
-			pVtx[0].rhw = 1.0f;
-			pVtx[1].rhw = 1.0f;
-			pVtx[2].rhw = 1.0f;
-			pVtx[3].rhw = 1.0f;
-
-			//テクスチャ座標の設定
-			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
-			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
-			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
-			pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
 		}
-		//頂点情報をアンロック
-		g_pVtxBuffEnemy->Unlock();
-
+		pVtx += 4;
 	}
+	//頂点情報をアンロック
+	g_pVtxBuffEnemy->Unlock();
 }
 //=========================================================================================================
 // 敵の描画処理
