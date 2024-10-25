@@ -218,7 +218,7 @@ void UpdatePlayer(void)
 			&g_movePlayer) == true)
 		{
 			g_player.bStepOn = false;
-			g_player.pos.y += -100.0f;
+			g_player.pos.y += -90.0f;
 			g_player.bJump = false;
 		}
 

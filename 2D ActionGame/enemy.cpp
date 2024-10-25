@@ -71,16 +71,15 @@ void InitEnemy()
 	{
 		//g_moveEnemy = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		//g_Enemy.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		//g_Enemy.posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		g_aEnemy[nCntEnemy].posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].nType = 0;
 		g_aEnemy[nCntEnemy].nLife = 0;
 		g_aEnemy[nCntEnemy].Counter = 0;
 		g_aEnemy[nCntEnemy].state = ENEMYSTATE_NORMAL;
 		g_aEnemy[nCntEnemy].bUse = false;
 	}
-
 	g_nNumEnemy = 0;											//敵(複数)の初期化
 
 	//敵を倒した時のスコア
@@ -202,7 +201,39 @@ void UpdateEnemy(void)
 				break;
 			}
 
+			//頂点バッファをロックし、頂点情報へのポインタを取得
+			g_pVtxBuffEnemy->Lock(0, 0, (void**)&pVtx, 0);
+
+			//前回の位置を保存
+			g_aEnemy[nCntEnemy].posOld = g_aEnemy[nCntEnemy].pos;
+
+			//位置を更新
+			g_aEnemy[nCntEnemy].pos.x += g_aEnemy[nCntEnemy].move.x;
+
+			//移動量を更新(減衰)
+			g_aEnemy[nCntEnemy].move.x += (1.0f - g_aEnemy[nCntEnemy].move.x) * 0.08f;
+
+			//頂点座標の設定(敵)
+			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
+			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
+			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
+			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
+
+			//rhwの設定
+			pVtx[0].rhw = 1.0f;
+			pVtx[1].rhw = 1.0f;
+			pVtx[2].rhw = 1.0f;
+			pVtx[3].rhw = 1.0f;
+
+			//テクスチャ座標の設定
+			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+			pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
 		}
+		//頂点情報をアンロック
+		g_pVtxBuffEnemy->Unlock();
+
 	}
 }
 //=========================================================================================================
