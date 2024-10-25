@@ -205,22 +205,24 @@ void UpdateEnemy(void)
 			//位置を更新
 			g_aEnemy[nCntEnemy].pos.x += g_aEnemy[nCntEnemy].move.x;
 
-			//移動量を更新(減衰)
+			//移動量を更新
 			g_aEnemy[nCntEnemy].move.x += (1.0f - g_aEnemy[nCntEnemy].move.x) * 0.08f;
 			//g_aEnemy[nCntEnemy].move.x -= (1.0f + g_aEnemy[nCntEnemy].move.x) * 0.08f;
+
+
 
 			//頂点座標の設定(敵)
 			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
 			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
 			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
 			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
-
 		}
 		pVtx += 4;
 	}
 	//頂点情報をアンロック
 	g_pVtxBuffEnemy->Unlock();
 }
+
 //=========================================================================================================
 // 敵の描画処理
 //=========================================================================================================

@@ -217,7 +217,7 @@ void SetBlock(D3DXVECTOR3 pos, float fHeight, float fWidth)
 //=========================================================================================================
 // ブロックの当たり判定
 //=========================================================================================================
-bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove, float fWidth, float fHeight)
+bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove, float fWidth, float fHeight, bool bLand)
 {
 	bool bLanding = false;	//着地しているかどうか
 
@@ -234,6 +234,7 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 					&& pPos->y > g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight)
 				{
 					bLanding = true;
+					bLand = true;
 					pPos->y = g_aBlock[nCntBlock].pos.y - g_aBlock[nCntBlock].fHeight;
 					pMove->y = 0.0f;
 				}
@@ -242,6 +243,7 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 					&& pPos->y - fHeight < g_aBlock[nCntBlock].pos.y + g_aBlock[nCntBlock].fHeight)
 				{
 					bLanding = true;
+					bLand = true;
 					pPos->y = g_aBlock[nCntBlock].pos.y + g_aBlock[nCntBlock].fHeight + fHeight;
 					pMove->y = 0.0f;
 					bLanding = false;
@@ -257,6 +259,8 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 				{
 					pPos->x = g_aBlock[nCntBlock].pos.x - g_aBlock[nCntBlock].fWidth - fWidth / 2;
 					pMove->x = 0.0f;
+					bLand = false;
+
 				}
 				//プレイヤーが右から左のブロックにめり込んだ
 				if (pPosOld->x - fWidth / 2 >= g_aBlock[nCntBlock].pos.x + g_aBlock[nCntBlock].fWidth
@@ -264,6 +268,7 @@ bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove,
 				{
 					pPos->x = g_aBlock[nCntBlock].pos.x + g_aBlock[nCntBlock].fWidth + fWidth / 2;
 					pMove->x = 0.0f;
+					bLand = false;
 				}
 			}
 		}

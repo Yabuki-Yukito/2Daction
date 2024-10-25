@@ -206,7 +206,8 @@ void UpdatePlayer(void)
 			&g_player.pos,								//現在の位置
 			&g_player.posOld,							//前回の位置
 			&g_movePlayer,								//プレイヤーの移動量
-			PLAYER_WIDTH, PLAYER_HEIGHT) == true)
+			PLAYER_WIDTH, PLAYER_HEIGHT,
+			g_player.bLand) == true)
 		{
 			g_player.bJump = false;
 		}

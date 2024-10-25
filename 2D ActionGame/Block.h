@@ -28,6 +28,6 @@ void UninitBlock(void);
 void UpdateBlock(void);
 void DrawBlock(void);
 void SetBlock(D3DXVECTOR3 pos, float fHeight, float fWidth/*, D3DXVECTOR3 move,int nLife,BlockTYPE type*/);
-bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove, float fWidth, float fHeight);
+bool CollisionBlock(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove, float fWidth, float fHeight, bool bLand);
 
 #endif // !_Block_H_
