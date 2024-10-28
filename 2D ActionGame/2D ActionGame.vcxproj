@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\game.cpp" />
     <ClCompile Include="backgraund.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="effect.cpp" />

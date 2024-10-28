@@ -222,9 +222,13 @@ void UpdateEnemy(void)
 				&g_aEnemy[nCntEnemy].move,
 				ENEMY_WIDTH, ENEMY_HEIGHT,
 				g_aEnemy[nCntEnemy].bLand) == false)
+
 			{
+				//g_aEnemy[nCntEnemy].move.x *= -1.0f;
 				g_aEnemy[nCntEnemy].move.x *= -1.0f;
 			}
+
+
 
 			//頂点座標の設定(敵)
 			pVtx[0].pos.x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH;
@@ -394,7 +398,7 @@ bool CollisionEnemy(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove)
 
 	pPlayer = GetPlayer();										//敵情報の戦闘アドレスが代入される
 
-	bool bHit = false;	//着地しているかどうか
+	bool bHit = false;											//ヒットしているかどうか
 
 	for (int nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{

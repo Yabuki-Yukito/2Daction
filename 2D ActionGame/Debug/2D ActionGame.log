@@ -1,2 +1,46 @@
-﻿  backgraund.cpp
-  2D ActionGame.vcxproj -> C:\Users\student\Desktop\2Daction\2Daction\Debug\2D ActionGame.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1091,5): warning MSB8027: game.cpp という名前の複数のファイルでは、同じ場所に出力が生成されます。これにより、不適切なビルド結果が生じる可能性があります。関連するファイルは ..\..\..\game.cpp, game.cpp です。
+  game.cpp
+c1xx : fatal error C1083: ソース ファイルを開けません。'..\..\..\game.cpp':No such file or directory
+  backgraund.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\backgraund.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  Block.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Block.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  effect.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\effect.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  enemy.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\enemy.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  explosion.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\explosion.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  fade.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\fade.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  game.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\game.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  Input.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Input.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  main.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\main.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  Particle.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Particle.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  pause.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\pause.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  player.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\player.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  rank.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\rank.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  ranking.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\ranking.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  result.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\result.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  score.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\score.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  sound.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\sound.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  time.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\time.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  title.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\title.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  コードを生成中...
+  コンパイル中...
+  wave.cpp
+C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\wave.cpp : fatal error C1041: プログラム データベース 'C:\Users\student\Desktop\2Daction\2Daction\2D ActionGame\Debug\vc142.pdb' を開けません。複数の CL.EXE が同じ .PDB ファイルに書き込む場合、/FS を使用してください。
+  コードを生成中...
