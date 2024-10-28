@@ -36,7 +36,7 @@ void Initbackgraund(void)
 
 	//テクスチャの読み込み
 	D3DXCreateTextureFromFile(pDevice2,
-		"data\\texture\\vrtp09.png",
+		"data\\texture\\background.png",
 		&g_pTexturebackgraund);
 
 	////テクスチャの読み込み2

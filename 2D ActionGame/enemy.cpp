@@ -8,18 +8,16 @@
 #include "enemy.h"
 #include "player.h"
 #include "score.h"
+#include "Block.h"
 //#include "bullet.h"
-
-//=========================================================================================================
-//メイン関数
-//=========================================================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #define MAX_ENEMY (128)											//敵の最大数
 #define NUM_ENEMY (4)											//敵の種類
-#define SIZE (40)												//敵の大きさ
+#define ENEMY_WIDTH (40)										//敵の大きさ(横)
+#define ENEMY_HEIGHT (80)										//敵の大きさ(縦)
 #define TIME (5)												//時間
 #define SECONDS (30)											//秒数
 
@@ -69,16 +67,15 @@ void InitEnemy()
 
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
-		//g_moveEnemy = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		//g_Enemy.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+		g_aEnemy[nCntEnemy].move = D3DXVECTOR3(3.0f, 0.0f, 0.0f);
 		g_aEnemy[nCntEnemy].nType = 0;
 		g_aEnemy[nCntEnemy].nLife = 0;
 		g_aEnemy[nCntEnemy].Counter = 0;
 		g_aEnemy[nCntEnemy].state = ENEMYSTATE_NORMAL;
 		g_aEnemy[nCntEnemy].bUse = false;
+		g_aEnemy[nCntEnemy].bLand = true;
 	}
 	g_nNumEnemy = 0;											//敵(複数)の初期化
 
@@ -102,10 +99,21 @@ void InitEnemy()
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
 		//敵情報の初期化
-		pVtx[0].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		pVtx[1].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		pVtx[2].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		pVtx[3].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[0].pos.x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH;
+		pVtx[0].pos.y = g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT;
+		pVtx[0].pos.z = 0.0f;
+
+		pVtx[1].pos.x = g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH;
+		pVtx[1].pos.y = g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT;
+		pVtx[1].pos.z = 0.0f;
+
+		pVtx[2].pos.x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH;
+		pVtx[2].pos.y = g_aEnemy[nCntEnemy].pos.y;
+		pVtx[2].pos.z = 0.0f;
+
+		pVtx[3].pos.x = g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH;
+		pVtx[3].pos.y = g_aEnemy[nCntEnemy].pos.y;
+		pVtx[3].pos.z = 0.0f;
 
 		//rhwの設定
 		pVtx[0].rhw = 1.0f;
@@ -119,7 +127,7 @@ void InitEnemy()
 		pVtx[2].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 		pVtx[3].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 
-		//テクスチャ座標の設定
+		//テクスチャ座標の設定(敵)
 		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
 		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
 		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
@@ -199,23 +207,41 @@ void UpdateEnemy(void)
 				break;
 			}
 
-			//前回の位置を保存
+			g_aEnemy[nCntEnemy].move.y += GB;							//重力加算
+
+			//前回の位置を保存(敵)
 			g_aEnemy[nCntEnemy].posOld = g_aEnemy[nCntEnemy].pos;
 
-			//位置を更新
+			//敵の位置を更新
 			g_aEnemy[nCntEnemy].pos.x += g_aEnemy[nCntEnemy].move.x;
+			g_aEnemy[nCntEnemy].pos.y += g_aEnemy[nCntEnemy].move.y;
 
-			//移動量を更新
-			g_aEnemy[nCntEnemy].move.x += (1.0f - g_aEnemy[nCntEnemy].move.x) * 0.08f;
-			//g_aEnemy[nCntEnemy].move.x -= (1.0f + g_aEnemy[nCntEnemy].move.x) * 0.08f;
-
-
+			if (CollisionBlock(
+				&g_aEnemy[nCntEnemy].pos,
+				&g_aEnemy[nCntEnemy].posOld,
+				&g_aEnemy[nCntEnemy].move,
+				ENEMY_WIDTH, ENEMY_HEIGHT,
+				g_aEnemy[nCntEnemy].bLand) == false)
+			{
+				g_aEnemy[nCntEnemy].move.x *= -1.0f;
+			}
 
 			//頂点座標の設定(敵)
-			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
-			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
-			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
-			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
+			pVtx[0].pos.x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH;
+			pVtx[0].pos.y = g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT;
+			pVtx[0].pos.z = 0.0f;
+
+			pVtx[1].pos.x = g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH;
+			pVtx[1].pos.y = g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT;
+			pVtx[1].pos.z = 0.0f;
+
+			pVtx[2].pos.x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH;
+			pVtx[2].pos.y = g_aEnemy[nCntEnemy].pos.y;
+			pVtx[2].pos.z = 0.0f;
+
+			pVtx[3].pos.x = g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH;
+			pVtx[3].pos.y = g_aEnemy[nCntEnemy].pos.y;
+			pVtx[3].pos.z = 0.0f;
 		}
 		pVtx += 4;
 	}
@@ -241,7 +267,8 @@ void DrawEnemy()
 	for (nCntEnemy = 0; nCntEnemy < MAX_ENEMY; nCntEnemy++)
 	{
 		if (g_aEnemy[nCntEnemy].bUse == true)
-		{//敵が使用されている
+		{
+			//敵が使用されている
 
 			//テクスチャの設定
 			pDevice->SetTexture(0, g_apTextureEnemy[g_aEnemy[nCntEnemy].nType]);
@@ -274,10 +301,10 @@ void SetEnemy(D3DXVECTOR3 pos, int nType, int nLife)
 			g_aEnemy[nCntEnemy].nLife = nLife;
 
 			//頂点座標の設定(敵)
-			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
-			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y - SIZE, 0.0f);
-			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
-			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + SIZE, g_aEnemy[nCntEnemy].pos.y + SIZE, 0.0f);
+			pVtx[0].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH, g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT, 0.0f);
+			pVtx[1].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH, g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT, 0.0f);
+			pVtx[2].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH, g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT, 0.0f);
+			pVtx[3].pos = D3DXVECTOR3(g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH, g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT, 0.0f);
 
 			//rhwの設定
 			pVtx[0].rhw = 1.0f;
@@ -285,7 +312,7 @@ void SetEnemy(D3DXVECTOR3 pos, int nType, int nLife)
 			pVtx[2].rhw = 1.0f;
 			pVtx[3].rhw = 1.0f;
 
-			//テクスチャ座標の設定
+			//テクスチャ座標の設定(敵)
 			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
 			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
 			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
@@ -373,43 +400,46 @@ bool CollisionEnemy(D3DXVECTOR3* pPos, D3DXVECTOR3* pPosOld, D3DXVECTOR3* pMove)
 	{
 		if (g_aEnemy[nCntEnemy].bUse == true)
 		{
-			//左右上下の敵の当たり判定
-			if (pPos->x + PLAYER_WIDTH / 2 > g_aEnemy[nCntEnemy].pos.x - SIZE
-				&& pPos->x - PLAYER_WIDTH / 2 < g_aEnemy[nCntEnemy].pos.x + SIZE)
+			//左右の敵の当たり判定
+			if (pPos->x + PLAYER_WIDTH / 2 > g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH
+				&& pPos->x - PLAYER_WIDTH / 2 < g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH)
 			{
-				if (pPosOld->y <= g_aEnemy[nCntEnemy].pos.y - SIZE
-					&& pPos->y > g_aEnemy[nCntEnemy].pos.y - SIZE)
+				//上の当たり判定
+				if (pPosOld->y <= g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT
+					&& pPos->y > g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT)
 				{
 					bHit = true;
-					pPos->y = g_aEnemy[nCntEnemy].pos.y - SIZE;
+					pPos->y = g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT;
 					pMove->y = 0.0f;
 
 					HitEnemy(nCntEnemy, 5);
 				}
-				else if (pPosOld->y - PLAYER_HEIGHT >= g_aEnemy[nCntEnemy].pos.y + SIZE
-					&& pPos->y - PLAYER_HEIGHT < g_aEnemy[nCntEnemy].pos.y + SIZE)
+				//下の当たり判定
+				else if (pPosOld->y - PLAYER_HEIGHT >= g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT
+					&& pPos->y - PLAYER_HEIGHT < g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT)
 				{
 					bHit = true;
-					pPos->y = g_aEnemy[nCntEnemy].pos.y + SIZE - PLAYER_WIDTH;
+					pPos->y = g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT - PLAYER_WIDTH;
 					pMove->y = 0.0f;
+					//bHit = false;
 				}
 			}
 			//敵のy(Old)の範囲がブロックに重なっている時の当たり判定
-			if (pPosOld->y > g_aEnemy[nCntEnemy].pos.y - SIZE
-				&& pPosOld->y - SIZE < g_aEnemy[nCntEnemy].pos.y + SIZE)
+			if (pPosOld->y > g_aEnemy[nCntEnemy].pos.y - ENEMY_HEIGHT
+				&& pPosOld->y - ENEMY_HEIGHT < g_aEnemy[nCntEnemy].pos.y + ENEMY_HEIGHT)
 			{
 				//敵が左から右のブロックにめり込んだ
-				if (pPosOld->x + PLAYER_WIDTH / 2 <= g_aEnemy[nCntEnemy].pos.x - SIZE
-					&& pPos->x + PLAYER_WIDTH / 2 > g_aEnemy[nCntEnemy].pos.x - SIZE)
+				if (pPosOld->x + PLAYER_WIDTH / 2 <= g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH
+					&& pPos->x + PLAYER_WIDTH / 2 > g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH)
 				{
-					pPos->x = g_aEnemy[nCntEnemy].pos.x - SIZE - PLAYER_WIDTH / 2;
+					pPos->x = g_aEnemy[nCntEnemy].pos.x - ENEMY_WIDTH - PLAYER_WIDTH / 2;
 					pMove->x = 0.0f;
 				}
 				//敵が右から左のブロックにめり込んだ
-				if (pPosOld->x - PLAYER_WIDTH / 2 >= g_aEnemy[nCntEnemy].pos.x + SIZE
-					&& pPos->x - PLAYER_WIDTH / 2 < g_aEnemy[nCntEnemy].pos.x + SIZE)
+				if (pPosOld->x - PLAYER_WIDTH / 2 >= g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH
+					&& pPos->x - PLAYER_WIDTH / 2 < g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH)
 				{
-					pPos->x = g_aEnemy[nCntEnemy].pos.x + SIZE + PLAYER_WIDTH / 2;
+					pPos->x = g_aEnemy[nCntEnemy].pos.x + ENEMY_WIDTH + PLAYER_WIDTH / 2;
 					pMove->x = 0.0f;
 				}
 

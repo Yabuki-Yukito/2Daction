@@ -49,6 +49,8 @@ typedef struct
 #define PLAYER_HEIGHT (80.0f)											//プレイヤーの高さ
 #define MAX_MAXIMUM  (200.0f)									//大きさ
 #define MAX_MINI (200.0f)										//小ささ
+#define JP (-40)		//ジャンプ力
+#define GB (+2.5)		//重力
 
 
 

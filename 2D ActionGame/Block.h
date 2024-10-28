@@ -17,7 +17,7 @@ typedef enum
 {
 	BlockTYPE_PLAYER = 0,					//プレイヤーのブロック
 	BlockTYPE_ENEMY,						//敵のブロック
-	BlockTPE_MAX
+	BlockTYPE_MAX
 }BlockTYPE;
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
